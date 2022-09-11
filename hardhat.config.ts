@@ -1,4 +1,5 @@
 import "dotenv/config"
+import "./tasks/block-number"
 import "@nomiclabs/hardhat-etherscan"
 import "@nomicfoundation/hardhat-toolbox"
 import { HardhatUserConfig } from "hardhat/config"
@@ -14,6 +15,10 @@ const config: HardhatUserConfig = {
       url: GOERLI_RPC_URL!,
       accounts: [PRIVATE_KEY!],
       chainId: 5,
+    },
+    localhost: {
+      url: "http://127.0.0.1:8545/",
+      chainId: 31337,
     },
   },
   solidity: "0.8.9",

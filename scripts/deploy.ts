@@ -24,7 +24,7 @@ async function verify(address: string, args: any) {
   console.log("Verifying contract...")
   try {
     await run("verify:verify", {
-      address: address,
+      address: address, 
       constructorArgs: args,
     })
   } catch (error: unknown) {
