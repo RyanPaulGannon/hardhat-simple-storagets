@@ -24,15 +24,14 @@ async function verify(address: string, args: any) {
   console.log("Verifying contract...")
   try {
     await run("verify:verify", {
-      address: address, 
+      address: address,
       constructorArgs: args,
     })
-  } catch (error: unknown) {
-    const e = error as ErrorEvent
-    if (e.message.toLowerCase().includes("already verified")) {
+  } catch (error: any) {
+    if (error.message.toLowerCase().includes("already verified")) {
       console.log("Already verified")
     } else {
-      console.error(e)
+      console.error(error)
     }
   }
 }

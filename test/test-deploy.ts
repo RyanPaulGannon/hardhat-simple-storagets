@@ -1,13 +1,15 @@
-import { describe } from "mocha"
 import { ethers } from "hardhat"
 import { expect, assert } from "chai"
-import { SimpleStorage } from "../typechain-types"
+import { SimpleStorage, SimpleStorage__factory } from "../typechain-types"
 
 describe("SimpleStorage", function () {
   // Nested describe can be used
-  let simpleStorageFactory, simpleStorage: SimpleStorage
+  let simpleStorageFactory: SimpleStorage__factory
+  let simpleStorage: SimpleStorage
   beforeEach(async function () {
-    simpleStorageFactory = await ethers.getContractFactory("SimpleStorage")
+    simpleStorageFactory = (await ethers.getContractFactory(
+      "SimpleStorage"
+    )) as SimpleStorage__factory
     simpleStorage = await simpleStorageFactory.deploy()
   })
 
@@ -29,4 +31,6 @@ describe("SimpleStorage", function () {
     const currentValue = await simpleStorage.retrieve()
     assert.equal(currentValue.toString(), expectedValue)
   })
+
+  // Tests for lines 26 and 27 of the Contract
 })
