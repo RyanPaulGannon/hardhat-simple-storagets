@@ -31,6 +31,16 @@ describe("SimpleStorage", function () {
     const currentValue = await simpleStorage.retrieve()
     assert.equal(currentValue.toString(), expectedValue)
   })
-
-  // Tests for lines 26 and 27 of the Contract
+  it("Should add a person with a favourite number and index correctly", async function () {
+    const newPerson: string = "Ryan"
+    const newFavoriteNumber: string = "12"
+    const transactionResponse = await simpleStorage.addPerson(
+      newPerson,
+      newFavoriteNumber
+    )
+    await transactionResponse.wait(1)
+    const { favoriteNumber, name } = await simpleStorage.people(0)
+    assert(name, newPerson)
+    assert(favoriteNumber, newFavoriteNumber)
+  })
 })
